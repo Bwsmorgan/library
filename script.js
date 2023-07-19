@@ -1,4 +1,10 @@
 let myLibrary = [];
+// const title = document.getElementById("book_title");
+// const author = document.getElementById("book_author");
+// const pages = document.getElementById("book_pages");
+// const read = document.getElementById("read_book?");
+ const submitBtn = document.querySelector("#submit_new_book")
+
 
 function Books (title, author, pages, read){
 
@@ -12,18 +18,18 @@ function Books (title, author, pages, read){
 }
 
 
-function addBooksToLibrary (bookObject) {
-    return myLibrary.push(bookObject)
+function addBookToLibrary (bookObject) {
+    myLibrary.push(bookObject)
+    return myLibrary.slice(-1)
 
 }
 
-function displayBookInfo (libraryArray) {
+function updateLibrary (libraryArray) {
 
     for (const book of libraryArray) {
 
-        document.getElementById("myLibrary").innerHTML += `<tr><td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.read}</td></tr>`
+        document.getElementById("myLibrary").innerHTML += `<tr><td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.read}</td></tr>`;
     }
-
 }
 
 function openNewBookForm () {
@@ -31,22 +37,43 @@ function openNewBookForm () {
 
 }
 
-function closeNewBookForm (){
-    document.getElementById("newBookForm").style.display = "none"
+submitBtn.addEventListener("click", closeNewBookForm)
+
+function closeNewBookForm (event){
+
+    event.preventDefault()
+
+    const title = document.querySelector("#book_title").value;
+    const author = document.querySelector("#book_author").value;
+    const pages = document.querySelector("#book_pages").value;
+    const read = document.querySelector("#read_book").value;
+
+    console.log(title);
+    let newBook = new Books(title, author, pages, read);
+    console.log(newBook);
+    
+    let newLibrary = addBookToLibrary(newBook);
+    console.log(newLibrary[2]);
+    updateLibrary(newLibrary);
+    
+    // // document.getElementById("newBookForm").style.display = "none";
+    
 }
 
 
 
-myBook = new Books('Harry Potter', 'J.K Rawlings', '500', 'yes');
+book1 = new Books('Harry Potter', 'J.K Rawlings', '500', 'yes');
 // console.log(myBook.info());
 
-myFavouriteBook = new Books('Handmaids Tale', 'Margret Atwood', '400', 'yes')
+book2 = new Books('Handmaids Tale', 'Margret Atwood', '400', 'yes')
 
-addBooksToLibrary(myBook)
-console.log(myLibrary[0])
-addBooksToLibrary(myFavouriteBook)
+addBookToLibrary(book1)
+addBookToLibrary(book2)
 
-displayBookInfo(myLibrary)
+// console.log(myLibrary[0])
+// addBookToLibrary(myFavouriteBook)
+
+updateLibrary(myLibrary)
 
 // console.log(Object.getPrototypeOf(myBook) === Books.prototype)
 // console.log(Object.getPrototypeOf(myFavouriteBook) === Object.getPrototypeOf(myBook))

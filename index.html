@@ -9,7 +9,6 @@
 </head>
 <body>
     
-
     <table id="myLibrary">
         <tr>
             <th colspan="4">Library</th>
@@ -24,23 +23,26 @@
     </table>
 
     <div class="addBookForm" id="newBookForm">
-        <form action="">
+        <form action="#" method="post" id="newBookFormID">
 
-            <h1>Add Book</h1>
+            <h1>Add Book To Library</h1>
 
-            <label for="">Title</label>
-            <input type="text">
+            <label for="book_title">Title</label>
+            <input type="text" id="book_title">
 
-            <label for="">Author</label>
-            <input type="text">
+            <label for="book_author">Author</label>
+            <input type="text" id="book_author">
 
-            <label for="">Pages</label>
-            <input type="text">
+            <label for="book_pages">Pages</label>
+            <input type="number" id="book_pages">
 
-            <label for="">Have you read this book before?</label>
-            <input type="text">
-
-            <button type="submit" onclick="closeNewBookForm()">Submit</button>
+            <label for="book_read">Have you read this book before?</label>
+            <select name="read_book" id="read_book">
+                <option value="yes">yes</option>
+                <option value="no">no</option>
+            </select>
+            
+            <button type="submit" onclick="closeNewBookForm()" id="submit_new_book">Submit</button>
 
         </form>
     </div>

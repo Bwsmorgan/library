@@ -14,10 +14,10 @@ td {
 }
 
 .addBookForm {
-    display: none;
+    /* display: none; */
+    text-align: center;
+    width: 50%;
+    margin: auto;
     border: red solid 2px;
-
-
-
 
 }
