@@ -1,0 +1,23 @@
+table, tr, th , td{
+    padding: 3px;
+    
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+tr {
+    padding: 5px 8px 5px 8px;
+}
+
+td {
+    text-align: center;
+}
+
+.addBookForm {
+    display: none;
+    border: red solid 2px;
+
+
+
+
+}

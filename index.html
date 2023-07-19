@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+    
+
+    <table id="myLibrary">
+        <tr>
+            <th colspan="4">Library</th>
+        </tr>
+
+        <tr>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Number of Pages</th>
+            <th>Read Book?</th>
+        </tr>
+    </table>
+
+    <div class="addBookForm" id="newBookForm">
+        <form action="">
+
+            <h1>Add Book</h1>
+
+            <label for="">Title</label>
+            <input type="text">
+
+            <label for="">Author</label>
+            <input type="text">
+
+            <label for="">Pages</label>
+            <input type="text">
+
+            <label for="">Have you read this book before?</label>
+            <input type="text">
+
+            <button type="submit" onclick="closeNewBookForm()">Submit</button>
+
+        </form>
+    </div>
+
+    <button onclick="openNewBookForm()">New Book</button>
+
+    <script src="./script.js"></script>
+</body>
+</html>
