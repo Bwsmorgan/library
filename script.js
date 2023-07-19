@@ -28,7 +28,7 @@ function updateLibrary (libraryArray) {
         const row = document.createElement("tr")
         row.setAttribute("id", `${dataSetCount}`)
         row.setAttribute("data-count", `${dataSetCount}`)
-        row.innerHTML = `<td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.read}</td>`
+        row.innerHTML = `<td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.read}</td><td><button type="submit" id=${dataSetCount} onclick="deleteBookFromLibrary(this.id)">Delete</button></td>`
 
 
         document.getElementById("myLibrary").appendChild(row)
@@ -70,6 +70,14 @@ function closeNewBookForm (e){
     
 }
 
+function deleteBookFromLibrary(button_id) {
+
+    console.log(button_id)
+    const selectedRow = document.getElementById(`${button_id}`)
+
+    delete selectedRow.remove()
+
+}
 
 
 book1 = new Books('Harry Potter', 'J.K Rawlings', '500', 'yes');
