@@ -1,9 +1,6 @@
 let myLibrary = [];
-// const title = document.getElementById("book_title");
-// const author = document.getElementById("book_author");
-// const pages = document.getElementById("book_pages");
-// const read = document.getElementById("read_book?");
- const submitBtn = document.querySelector("#submit_new_book")
+const submitBtn = document.querySelector("#submit_new_book");
+let dataSetCount = 1;
 
 
 function Books (title, author, pages, read){
@@ -28,8 +25,21 @@ function updateLibrary (libraryArray) {
 
     for (const book of libraryArray) {
 
-        document.getElementById("myLibrary").innerHTML += `<tr><td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.read}</td></tr>`;
+        const row = document.createElement("tr")
+        row.setAttribute("id", `${dataSetCount}`)
+        row.setAttribute("data-count", `${dataSetCount}`)
+        row.innerHTML = `<td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.read}</td>`
+
+
+        document.getElementById("myLibrary").appendChild(row)
+        
+        // innerHTML += `<tr data-count=${dataSetCount} ><td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.read}</td></tr>`;      
+
+        console.log(row.dataset.count)
+        
+        dataSetCount += 1;
     }
+    
 }
 
 function openNewBookForm () {
@@ -39,9 +49,9 @@ function openNewBookForm () {
 
 submitBtn.addEventListener("click", closeNewBookForm)
 
-function closeNewBookForm (event){
+function closeNewBookForm (e){
 
-    event.preventDefault()
+    e.preventDefault()
 
     const title = document.querySelector("#book_title").value;
     const author = document.querySelector("#book_author").value;
@@ -56,7 +66,7 @@ function closeNewBookForm (event){
     console.log(newLibrary[2]);
     updateLibrary(newLibrary);
     
-    // // document.getElementById("newBookForm").style.display = "none";
+    document.getElementById("newBookForm").style.display = "none";
     
 }
 
