@@ -2,6 +2,21 @@ let myLibrary = [];
 const submitBtn = document.querySelector("#submit_new_book");
 let dataSetCount = 1;
 
+// Books.prototype.changeReadStatus = function(checkboxID) {
+
+//     let checkbox = document.getElementById(`checkbox${checkboxID}`)
+
+//     if (checkbox.checked === true) {
+//         this.read = "yes"
+//         console.log(this.read)
+//     }
+//     else{
+//         this.read = "no"
+//         console.log(this.read)
+//     }
+// }    
+
+
 
 function Books (title, author, pages, read){
 
@@ -16,6 +31,7 @@ function Books (title, author, pages, read){
 
 
 function addBookToLibrary (bookObject) {
+
     myLibrary.push(bookObject)
     return myLibrary.slice(-1)
 
@@ -28,7 +44,12 @@ function updateLibrary (libraryArray) {
         const row = document.createElement("tr")
         row.setAttribute("id", `${dataSetCount}`)
         row.setAttribute("data-count", `${dataSetCount}`)
-        row.innerHTML = `<td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.read}</td><td><button type="submit" id=${dataSetCount} onclick="deleteBookFromLibrary(this.id)">Delete</button></td>`
+        row.innerHTML = `<td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>
+        <input type="checkbox"
+               id="checkbox${dataSetCount}" onclick="readStatus(this.id)"
+        />
+                
+        </td><td><button type="submit" id=${dataSetCount} onclick="deleteBookFromLibrary(this.id)">Delete</button></td>`
 
 
         document.getElementById("myLibrary").appendChild(row)
@@ -47,9 +68,9 @@ function openNewBookForm () {
 
 }
 
-submitBtn.addEventListener("click", closeNewBookForm)
+submitBtn.addEventListener("click", submitNewBookForm)
 
-function closeNewBookForm (e){
+function submitNewBookForm (e){
 
     e.preventDefault()
 
@@ -58,12 +79,10 @@ function closeNewBookForm (e){
     const pages = document.querySelector("#book_pages").value;
     const read = document.querySelector("#read_book").value;
 
-    console.log(title);
     let newBook = new Books(title, author, pages, read);
-    console.log(newBook);
     
     let newLibrary = addBookToLibrary(newBook);
-    console.log(newLibrary[2]);
+
     updateLibrary(newLibrary);
     
     document.getElementById("newBookForm").style.display = "none";
@@ -76,8 +95,16 @@ function deleteBookFromLibrary(button_id) {
     const selectedRow = document.getElementById(`${button_id}`)
 
     delete selectedRow.remove()
-
 }
+
+
+function readStatus(checkbox_id) {
+    console.log(`${checkbox_id}`)
+    let checkbox = document.getElementById(`${checkbox_id}`)
+    console.log(checkbox.checked)
+    console.log(this.author)
+}
+
 
 
 book1 = new Books('Harry Potter', 'J.K Rawlings', '500', 'yes');
