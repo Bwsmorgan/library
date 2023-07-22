@@ -103,7 +103,6 @@ function deleteBookFromLibrary(button_id) {
     myLibrary.splice(myLibrary[`${button_id}`], 1);
     console.log(myLibrary);
 
-    // NEED TO REMOVE ROW FROM MY LIBRARY THE RENDER THE UPDATED LIBRARY 
 }
 
 
@@ -116,13 +115,24 @@ function readStatus(checkbox_id) {
 
 exitFormBtn.addEventListener("click", exitForm)
 
-function exitForm() {
+function exitForm(e) {
+
+    e.preventDefault()
 
     console.log("exited")
     document.getElementById("newBookForm").style.display = "none";
-    updateLibrary(myLibrary);
+   
+    console.log(myLibrary)
 
 }
+
+
+
+
+
+
+
+
 
 
 book1 = new Books('Harry Potter', 'J.K Rawlings', '500', 'yes');
