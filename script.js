@@ -1,5 +1,6 @@
 let myLibrary = [];
 const submitBtn = document.querySelector("#submit_new_book");
+const exitFormBtn = document.querySelector("#exit_btn")
 let dataSetCount = 1;
 
 // Books.prototype.changeReadStatus = function(checkboxID) {
@@ -57,6 +58,7 @@ function updateLibrary (libraryArray) {
         // innerHTML += `<tr data-count=${dataSetCount} ><td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.read}</td></tr>`;      
 
         console.log(row.dataset.count)
+        console.log(myLibrary);
         
         dataSetCount += 1;
     }
@@ -94,7 +96,14 @@ function deleteBookFromLibrary(button_id) {
     console.log(button_id)
     const selectedRow = document.getElementById(`${button_id}`)
 
+    
     delete selectedRow.remove()
+    
+    //Removes the deleted row from our library array
+    myLibrary.splice(myLibrary[`${button_id}`], 1);
+    console.log(myLibrary);
+
+    // NEED TO REMOVE ROW FROM MY LIBRARY THE RENDER THE UPDATED LIBRARY 
 }
 
 
@@ -105,6 +114,15 @@ function readStatus(checkbox_id) {
     console.log(this.author)
 }
 
+exitFormBtn.addEventListener("click", exitForm)
+
+function exitForm() {
+
+    console.log("exited")
+    document.getElementById("newBookForm").style.display = "none";
+    updateLibrary(myLibrary);
+
+}
 
 
 book1 = new Books('Harry Potter', 'J.K Rawlings', '500', 'yes');
